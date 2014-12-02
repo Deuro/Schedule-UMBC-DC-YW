@@ -1,0 +1,2 @@
+Make it so that new teachers could add it.
+SImple as mysql stuff.
