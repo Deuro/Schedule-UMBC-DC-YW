@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AppointmentAdvisor</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string-array name="professors_array">
+        <item>Lupoli</item>
+        <item>Kuber</item>
+        <item>Park</item>
+        <item>Yesha</item>
+    </string-array>
+
+    <string name="title_activity_schedule">ScheduleActivity</string>
+
+</resources>
