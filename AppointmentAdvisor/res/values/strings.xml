@@ -11,7 +11,16 @@
         <item>Park</item>
         <item>Yesha</item>
     </string-array>
+    
+    <string-array name="standing_array">
+        <item>SENIOR</item>
+        <item>JUNIOR</item>
+        <item>SOPHMORE</item>
+        <item>FRESHMAN</item>
+    </string-array>
 
     <string name="title_activity_schedule">ScheduleActivity</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_confirm">ConfirmActivity</string>
 
 </resources>
