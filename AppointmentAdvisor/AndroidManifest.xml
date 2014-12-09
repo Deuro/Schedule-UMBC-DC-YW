@@ -10,7 +10,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/appointmentadvisoricon"
         android:label="Appointment Advisor"
         android:theme="@style/AppTheme" >
         <activity
