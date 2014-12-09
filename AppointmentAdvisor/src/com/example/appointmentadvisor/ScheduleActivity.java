@@ -1,5 +1,11 @@
 package com.example.appointmentadvisor;
-
+/**
+ * Appointment Advisor
+ * Dylan Chu, Yu-Dean Wang
+ * 
+ * This activity populates a radio group with timeslots and lets the user schedule an appointment
+ * Then is will go to a confirmation screen
+ */
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -30,25 +36,33 @@ import android.widget.TextView;
 import android.widget.RelativeLayout.LayoutParams;
 
 public class ScheduleActivity extends Activity {
+	//instance variables
 	public static final String EXTRA_PROFESSOR = "com.example.appointmentadvisor.ScheduleActivity.professor";
 	String timeslotSelected;
 	boolean flag;
 	String classStanding="";
+	String professor="";
+	String daySelected="";
 	ArrayList<Timeslot> myTimes;
 	String filename;
+	
+	//onCreate
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//instantiate variables
 		timeslotSelected = "";
 		filename="";
 		myTimes = new ArrayList<Timeslot>();
 		setContentView(R.layout.activity_schedule);
-		// Get the message from the intent
-	    Intent intent = getIntent();
-		classStanding=intent.getStringExtra(MainActivity.EXTRA_STANDING);
-
-	    filename = intent.getStringExtra(MainActivity.EXTRA_PROFESSOR);
+		// Get data from the intent
+		Intent intent = getIntent();
+		classStanding=intent.getStringExtra(MenuActivity.EXTRA_STANDING);
+		professor = intent.getStringExtra(MenuActivity.EXTRA_PROFESSOR);
+	    filename = intent.getStringExtra(MenuActivity.EXTRA_FILENAME);
+	    daySelected = intent.getStringExtra(MenuActivity.EXTRA_DAY_SELECTED);
 	    
+	    //read the file and populate the timeslot arraylist with open classes
 	    try {
 		    BufferedReader inputReader = new BufferedReader(new InputStreamReader(
 		            openFileInput(filename)));
@@ -78,13 +92,14 @@ public class ScheduleActivity extends Activity {
 		    e.printStackTrace();
 		}
 	    
+	    //populate the radiogroup with radio buttons
 	    String str="";
 	    for(int i =0;i<myTimes.size();i++)
 	    {
 	    	str += myTimes.get(i).toString();
 	    }
 	    RadioGroup radioGroup = (RadioGroup)findViewById(R.id.group);
-	    
+	    //check the class standing to display the proper timeslots
 	    for (int i = 0; i < myTimes.size(); i++) {
 	    	
 	    	if((classStanding.equals("SENIOR"))
@@ -102,6 +117,7 @@ public class ScheduleActivity extends Activity {
 	    			
 	    			)
 	    	{
+	    		//only display open timeslots
 	    		if(myTimes.get(i).isOpen())
 	            {
 	    			RadioButton myRadioButton = new RadioButton(this);
@@ -135,6 +151,7 @@ public class ScheduleActivity extends Activity {
 		return true;
 	}
 	
+	//write to the user file and rewrite the source file to close the timeslot
 	public void schedule(View view){
 		for(int i = 0;i<myTimes.size();i++)
 		{
@@ -144,10 +161,12 @@ public class ScheduleActivity extends Activity {
 			}
 		}
 		String timeString ="";
-		
+		String userString = "Your appointment is on "+ daySelected + 
+			" at " + timeslotSelected + " with Professor "+ professor;
 		for(int i=0;i<myTimes.size();i++){
 			timeString += myTimes.get(i).toString();
 		}
+		//rewrite the professor file
 		try {
 			  FileOutputStream outputStream;
 			  outputStream = openFileOutput(filename, Context.MODE_PRIVATE| Context.MODE_WORLD_READABLE);
@@ -156,10 +175,19 @@ public class ScheduleActivity extends Activity {
 			} catch (Exception e) {
 			  e.printStackTrace();
 			}
+		//write to user file
+		try {
+			  FileOutputStream outputStream;
+			  outputStream = openFileOutput("user", Context.MODE_PRIVATE| Context.MODE_WORLD_READABLE);
+			  outputStream.write(userString.getBytes());
+			  outputStream.close();
+			} catch (Exception e) {
+			  e.printStackTrace();
+			}
 		
-		
+		//send a confirmation message
 		Intent intent = new Intent(this,ConfirmActivity.class);
-		intent.putExtra(EXTRA_PROFESSOR, filename);
+		intent.putExtra(EXTRA_PROFESSOR, professor);
 		startActivity(intent);
 	}
 }

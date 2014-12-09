@@ -8,27 +8,34 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MenuActivity" >
 
-    <Spinner
-        android:id="@+id/standings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="71dp" />
-
-    <RadioGroup 
-	 android:id="@+id/days"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
    
-</RadioGroup>
+    <RadioGroup 
+	 	android:id="@+id/radiodays"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_below="@+id/textView1"
+    	android:orientation="vertical">
+   
+	</RadioGroup>
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/spinner1"
+        
         android:layout_alignParentTop="true"
-        android:text="Select your class and what day you want to schedule" />
+        android:text="Select what day you want to schedule" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="56dp"
+        android:text="Schedule an Appointment" 
+        android:onClick="schedule"/>
+
+   
 
 </RelativeLayout>

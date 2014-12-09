@@ -1,5 +1,9 @@
 package com.example.appointmentadvisor;
-
+/**
+ * Simple class to simulate a timeslot
+ * @author Dylan
+ *
+ */
 public class Timeslot 
 {
 	private String time;

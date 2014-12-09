@@ -34,6 +34,10 @@
             android:name="com.example.appointmentadvisor.ConfirmActivity"
             android:label="Thank you for scheduling!" >
         </activity>
+        <activity
+            android:name="com.example.appointmentadvisor.CheckActivity"
+            android:label="@string/title_activity_check" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,5 +1,8 @@
 package com.example.appointmentadvisor;
-
+/**
+ * simple class to confirm that the user scheduled properly
+ * sends user back to main menu
+ */
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
